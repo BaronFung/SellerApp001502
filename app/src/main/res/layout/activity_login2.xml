@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:id="@+id/login_div2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_margin="15dp">
+            <TextView
+                android:id="@+id/login_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="注册 2/2"
+                android:layout_centerHorizontal="true"/>
+            <!--头像-->
+            <TextView
+                android:id="@+id/head_portrait_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_below="@+id/login_two"
+                android:layout_marginTop="30dp"
+                android:text="1、上传头像"/>
+            <ImageView
+                android:id="@+id/head_portrait_Image"
+                android:layout_below="@id/head_portrait_Text"
+                android:layout_centerHorizontal="true"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitXY" />
+            <!--营业证书-->
+            <TextView
+                android:id="@+id/login_certificate_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/head_portrait_Image"
+                android:text="2、上传营业证书照片"/>
+            <ImageView
+                android:id="@+id/login_certificate_Image"
+                android:layout_below="@id/login_certificate_Text"
+                android:layout_centerHorizontal="true"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                />
+            <!--身份证-->
+            <TextView
+                android:id="@+id/login_ID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/login_certificate_Image"
+                android:text="3、上传身份证照片"/>
+            <ImageView
+                android:id="@+id/login_ID_Image"
+                android:layout_below="@id/login_ID"
+                android:layout_centerHorizontal="true"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="fitXY"
+                />
+            <!-- 确认button -->
+            <Button
+                android:id="@+id/confirm_button"
+                android:text="确认"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/login_ID_Image"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                />
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

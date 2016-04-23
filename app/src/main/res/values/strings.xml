@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SellerApp002</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="generals">
+        <item>昆山卤鸭</item>
+        <item>宫保鸡丁</item>
+        <item>麻婆豆腐</item>
+        <item>山西腊肉</item>
+        <item>红烧肉</item>
+        <item>南京咸水鸭</item>
+        <item>红烧排骨</item>
+        <item>清溜虾仁</item>
+        <item>农家小炒</item>
+    </string-array>
+    <string name="title_activity_sign_in">SignInActivity</string>
+    <string name="title_activity_login2">Login2</string>
+    <string name="title_activity_waiting">Waiting</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_order">OrderActivity</string>
+    <string name="title_activity_info">InfoActivity</string>
+</resources>
