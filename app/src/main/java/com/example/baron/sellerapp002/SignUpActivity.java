@@ -140,9 +140,11 @@ public class SignUpActivity extends Activity {
 
             ImageView ivThumb=(ImageView)layout.findViewById(R.id.iThumb);
             TextView tvName=(TextView) layout.findViewById(R.id.iName);
+            //TextView ivPrice= (TextView) layout.findViewById(R.id.iPrice);
             GeneralBean bean=mGenerals.get(position);
             ivThumb.setImageResource(bean.getResid());
             tvName.setText(bean.getName());
+
 
             return layout;
         }

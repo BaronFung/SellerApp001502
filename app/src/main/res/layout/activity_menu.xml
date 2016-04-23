@@ -7,7 +7,7 @@
     tools:context="com.example.baron.logined002.MenuActivity">
 
     <ListView
-        android:id="@+id/lGeneral"
+        android:id="@+id/lvGeneral"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#ccc"

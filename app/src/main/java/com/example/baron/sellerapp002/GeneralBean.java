@@ -7,6 +7,7 @@ public class GeneralBean {
 
     private int resid;
     private String name;
+
     public int getResid() {
         return resid;
     }

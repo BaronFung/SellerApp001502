@@ -1,16 +1,30 @@
 package com.example.baron.sellerapp002;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class Waiting extends AppCompatActivity {
+    private Button exitbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waiting);
+        exitbtn= (Button) findViewById(R.id.Exitbtn);
+       exitbtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent=new Intent();
+               intent.setClass(Waiting.this,MainActivity.class);
+               startActivity(intent);
+           }
+       });
+
     }
 
     @Override

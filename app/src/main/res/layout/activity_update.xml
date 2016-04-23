@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+        android:id="@+id/iv_update_thumb"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/saltedduck" />
+    <EditText
+        android:id="@+id/etName"
+        android:layout_below="@+id/iv_update_thumb"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="白起" />
+    <EditText
+        android:id="@+id/etDetails"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:text="@string/detail"
+        android:layout_toRightOf="@+id/iv_update_thumb"/>
+    <Button
+        android:id="@+id/btnOK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="修改"
+        android:layout_below="@+id/etDetails"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"/>
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="放弃"
+        android:layout_below="@+id/etDetails"
+        android:layout_toRightOf="@+id/btnOK"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"/>
+
+</RelativeLayout>

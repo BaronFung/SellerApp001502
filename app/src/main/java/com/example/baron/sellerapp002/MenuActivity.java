@@ -1,35 +1,32 @@
 package com.example.baron.sellerapp002;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
-public class MenuActivity extends Activity {
+public class MenuActivity extends AppCompatActivity {
     ListView mlvGeneral;
-    List<GeneralBean> mGenerals;
+    List<GeneralBean2> mGenerals;
     GeneralAdapter mAdapter;
-    int[] resid={
-            R.drawable.kunshanspicedduck,
-            R.drawable.kungpaochicken,R.drawable.mapo,
-            R.drawable.premeat,R.drawable.bouilli,R.drawable.saltedduck,
-            R.drawable.ribs,R.drawable.shrimpmeat,R.drawable.xiaochaorou
+    private static final int ACTION_DETAILS=0;
+    private static final int ACTION_ADD=1;
+    private static final int ACTION_DELETE=2;
+    private static final int ACTION_UPDATE=3;
 
-    };
+    int mPosition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,83 +34,150 @@ public class MenuActivity extends Activity {
         initData();
         initView();
         setListener();
-
     }
 
     private void setListener() {
-        setOnItemClickListener();
-        setOnItemLongClickListener();
-
-    }
-
-    private void setOnItemLongClickListener() {
-        mlvGeneral.setOnItemLongClickListener(new OnItemLongClickListener() {
+        mlvGeneral.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                Toast.makeText(MenuActivity.this, mGenerals.get(position).getName()+"bb", Toast.LENGTH_SHORT).show();
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MenuActivity.this);
+                builder.setTitle("选择以下操作")
+                        .setItems(new String[]{"查看详情", "添加数据", "删除数据", "修改数据"}, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case ACTION_DETAILS:
+                                        showDetails(position);
+                                        break;
+                                    case ACTION_ADD:
+                                        break;
+                                    case ACTION_DELETE:
+                                        mAdapter.remove(position);
+                                        break;
+                                    case ACTION_UPDATE:
+                                        Intent intent=new Intent(MenuActivity.this,UpdateActivity.class);
+                                        intent.putExtra("general",mGenerals.get(position));
+                                        mPosition=position;
+                                        startActivityForResult(intent,ACTION_UPDATE);
+                                        break;
+                                }
+                            }
+
+                            private void showDetails(int position) {
+                                GeneralBean2 general = mGenerals.get(position);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MenuActivity.this);
+                                builder.setTitle(general.getName2())
+                                        .setMessage(general.getDetail2())
+                                        .setPositiveButton("返回", null);
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
                 return true;
             }
         });
     }
 
-    private void setOnItemClickListener() {
-        mlvGeneral.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                Toast.makeText(MenuActivity.this, mGenerals.get(position).getName() + "bbb", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     private void initView() {
-        mlvGeneral=(ListView) findViewById(R.id.lGeneral);
-        mAdapter=new GeneralAdapter();
+        mlvGeneral= (ListView) findViewById(R.id.lvGeneral);
+        mAdapter=new GeneralAdapter(mGenerals,this);
         mlvGeneral.setAdapter(mAdapter);
     }
 
     private void initData() {
-
         String[] names=getResources().getStringArray(R.array.generals);
-        mGenerals=new ArrayList<GeneralBean>();
-        for (int i = 0; i < names.length; i++) {
-            GeneralBean bean=new GeneralBean(resid[i], names[i]);
-            mGenerals.add(bean);
+        String[] details=getResources().getStringArray(R.array.details);
+        int[] resid={
+                R.drawable.kunshanspicedduck,
+                R.drawable.kungpaochicken,R.drawable.mapo,
+                R.drawable.premeat,R.drawable.bouilli,R.drawable.saltedduck,
+                R.drawable.ribs,R.drawable.shrimpmeat
+        };
+        mGenerals=new ArrayList<GeneralBean2>();
+        for (int i=0;i<resid.length;i++){
+            GeneralBean2 general=new GeneralBean2(resid[i],names[i],details[i]);
+            //GeneralBean2 general=new GeneralBean2(resid[i],names[i],details[i]);
+            mGenerals.add(general);
         }
     }
 
-
     class GeneralAdapter extends BaseAdapter{
+        List<GeneralBean2> generals;
+        MenuActivity context;
+        public void remove(int position){
+            generals.remove(position);
+            notifyDataSetChanged();
+        }
+        public void add(GeneralBean2 general){
+            mGenerals.add(general);
+            notifyDataSetChanged();
+        }
+        public void update(int position,GeneralBean2 general){
+            mGenerals.set(position,general);
+            notifyDataSetChanged();
+        }
+
+        public GeneralAdapter(List<GeneralBean2> generals, MenuActivity context) {
+            this.generals = generals;
+            this.context = context;
+        }
+
+
 
         @Override
         public int getCount() {
-            return mGenerals.size();
+            return generals.size();
         }
 
         @Override
-        public GeneralBean getItem(int position) {
-            return mGenerals.get(position);
+        public Object getItem(int position) {
+            return null;
         }
 
         @Override
         public long getItemId(int position) {
-            return position;
+            return 0;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
-            View layout=View.inflate(MenuActivity.this, R.layout.list_item_cut, null);
-
-            ImageView ivThumb=(ImageView) layout.findViewById(R.id.iThumb);
-            TextView tvName=(TextView) layout.findViewById(R.id.iName);
-            GeneralBean bean=mGenerals.get(position);
-            ivThumb.setImageResource(bean.getResid());
-            tvName.setText(bean.getName());
-
-            return layout;
+            ViewHolder holder=null;
+            if (convertView==null){
+                convertView=View.inflate(context,R.layout.list_item,null);
+                holder=new ViewHolder();
+                holder.ivThumb= (ImageView) convertView.findViewById(R.id.iThumb);
+                holder.tvName= (TextView) convertView.findViewById(R.id.iName);
+                convertView.setTag(holder);
+            }else {
+                holder= (ViewHolder) convertView.getTag();
+            }
+            GeneralBean2 general=generals.get(position);
+            holder.ivThumb.setImageResource(general.getResid2());
+            holder.tvName.setText(general.getName2());
+            return convertView;
+        }
+        class ViewHolder{
+            ImageView ivThumb;
+            TextView tvName;
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode!=RESULT_OK){
+            return;
+        }
+        switch (requestCode){
+            case ACTION_UPDATE:
+                GeneralBean2 general= (GeneralBean2) data.getSerializableExtra("general");
+                mAdapter.update(mPosition,general);
+                break;
+            case ACTION_ADD:
+                break;
+        }
     }
 }
