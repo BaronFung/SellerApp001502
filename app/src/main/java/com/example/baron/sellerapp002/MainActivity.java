@@ -1,31 +1,58 @@
 package com.example.baron.sellerapp002;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = (Button) findViewById(R.id.signUp);
+
+
+        final Button button = (Button) findViewById(R.id.signUp);
         TextView textview = (TextView) findViewById(R.id.signintext);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, SignUpActivity.class);
-                Log.i("shawn","gggggg");
-                startActivity(intent);
+                EditText userNameView = (EditText)findViewById(R.id.userName);
+                EditText userPasswdView = (EditText)findViewById(R.id.userPasswd);
+                final String userNameStr = userNameView.getText().toString();
+                final String userPassword = userPasswdView.getText().toString();
+                new AsyncTask<String, String, String>()  {
+
+                    @Override
+                    protected String doInBackground(String... strings) {
+
+
+                        Log.i("lyj","hjsljflkasjdflkjasdlkjfl----login"+userNameStr+"   "+userNameStr);
+                        HttpTrans httpTrans = new HttpTrans();
+                        httpTrans.signup(userNameStr, userPassword);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(String s) {
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, SignUpActivity.class);
+                        Log.i("shawn", "gggggg");
+                        startActivity(intent);
+                    }
+                }.execute();
+
             }
         });
 

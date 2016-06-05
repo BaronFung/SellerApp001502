@@ -1,8 +1,9 @@
 package com.example.baron.sellerapp002;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends Activity {
     ListView mlvGeneral;
     List<GeneralBean2> mGenerals;
     GeneralAdapter mAdapter;

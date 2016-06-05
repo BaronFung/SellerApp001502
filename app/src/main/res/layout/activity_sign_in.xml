@@ -40,8 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/username_edit"
             android:layout_marginTop="3dp"
-            android:text="密码"
-            style="@style/Theme.AppCompat.NoActionBar" />
+            android:text="密码"/>
         <EditText
             android:id="@+id/login_password_edit"
             android:layout_width="fill_parent"
@@ -57,8 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_password_edit"
             android:layout_marginTop="3dp"
-            android:text="确认密码"
-            style="@style/Theme.AppCompat.NoActionBar" />
+            android:text="确认密码"/>
         <EditText
             android:id="@+id/confirm_password_edit"
             android:layout_width="fill_parent"
@@ -74,8 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/confirm_password_edit"
             android:layout_marginTop="3dp"
-            android:text="手机号"
-            style="@style/Theme.AppCompat.NoActionBar" />
+            android:text="手机号"/>
         <EditText
             android:id="@+id/login_phone_edit"
             android:layout_width="fill_parent"

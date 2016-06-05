@@ -1,20 +1,35 @@
 package com.example.baron.sellerapp002;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-public class Waiting extends AppCompatActivity {
+import com.managerplat.model.Sellers;
+
+public class Waiting extends Activity {
     private Button exitbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waiting);
+        Intent intent = getIntent();
+        final Sellers sellers = (Sellers) intent.getSerializableExtra("seller");
+        new AsyncTask<String,String,String>(){
+
+            @Override
+            protected String doInBackground(String... strings) {
+                HttpTrans httpTrans = new HttpTrans();
+                httpTrans.signin(sellers);
+                return null;
+            }
+        }.execute();
         exitbtn= (Button) findViewById(R.id.Exitbtn);
        exitbtn.setOnClickListener(new View.OnClickListener() {
            @Override

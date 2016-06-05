@@ -42,8 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/username_edit"
             android:layout_marginTop="3dp"
-            android:text="地址"
-            style="@style/Theme.AppCompat.NoActionBar" />
+            android:text="地址"/>
         <EditText
             android:id="@+id/login_password_edit"
             android:layout_width="fill_parent"
@@ -59,8 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/login_password_edit"
             android:layout_marginTop="3dp"
-            android:text="手机号码"
-            style="@style/Theme.AppCompat.NoActionBar" />
+            android:text="手机号码"/>
         <EditText
             android:id="@+id/confirm_password_edit"
             android:layout_width="fill_parent"

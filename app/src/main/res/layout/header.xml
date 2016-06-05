@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="fill_horizontal">
+
+    <TextView
+        android:singleLine="true"
+        android:layout_weight="1"
+        android:text="OrderId"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:id="@+id/order_id_lyj"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:singleLine="true"
+        android:layout_weight="1"
+        android:text="DishId"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:id="@+id/dish_id_lyj"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:singleLine="true"
+        android:text="DishName"
+        android:layout_weight="1.5"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:id="@+id/dish_name__lyj"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:singleLine="true"
+        android:text="Count"
+        android:layout_weight="1"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:id="@+id/dish_count_lyj"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

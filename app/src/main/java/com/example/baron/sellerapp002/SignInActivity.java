@@ -1,6 +1,7 @@
 package com.example.baron.sellerapp002;
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -8,9 +9,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends Activity {
 
 
     private Button button1;
@@ -35,8 +37,14 @@ public class SignInActivity extends AppCompatActivity {
 
                 if (!et1.getText().toString().isEmpty()&& !et2.getText().toString().isEmpty() && !et3.getText().toString().isEmpty() && !et4.getText().toString().isEmpty()) {
                     if (et2.getText().toString().equals(et3.getText().toString())) {
+                        String name = et1.getText().toString();
+                        String passwd = et2.getText().toString();
+                        String phone = et4.getText().toString();
                         Intent intent = new Intent();
                         intent.setClass(SignInActivity.this, Login2.class);
+                        intent.putExtra("name",name);
+                        intent.putExtra("passwd",passwd);
+                        intent.putExtra("phone",phone);
                         startActivity(intent);
 
                     } else {
